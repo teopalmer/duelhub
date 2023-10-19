@@ -1,0 +1,11 @@
+node_modules
+.next
+.dockerignore
+Dockerfile
+.git
+.gitignore
+.github
+.env
+.husky
+.swc
+docker

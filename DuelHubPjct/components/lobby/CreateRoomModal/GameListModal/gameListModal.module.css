@@ -1,0 +1,3 @@
+.gamePickRadio:checked ~ label {
+  border: 1px solid #2f88ff;
+}

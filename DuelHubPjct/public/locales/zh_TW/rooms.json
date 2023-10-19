@@ -1,0 +1,8 @@
+{
+  "room_is_full": "The room is full!",
+  "wrong_password": "Wrong password",
+  "you_can_only_join_1_room": "You can join only one room!",
+  "rooms_list": "List of Lobbies",
+  "rooms_waiting": "Available lobbies",
+  "rooms_playing": "Full lobbies"
+}
