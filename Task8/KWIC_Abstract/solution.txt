@@ -1,0 +1,57 @@
+import nltk
+from nltk.corpus import stopwords
+stopList = set(stopwords.words('english'))
+
+class Title:
+    def __init__(self, text):
+        self.text = text
+
+class Word:
+    def __init__(self, text):
+        self.text = text
+        self.location = 0
+        self.value = 1
+
+class Context:
+    def __init__(self, len):
+        self.len = len
+    
+class Index:
+    def __init__(self):
+        self.value = []
+    
+    def add_index(self, con, word, title):
+        temp = ""
+        i = word.location - con.len
+
+        if i < 0:
+            i = 0
+
+        while (i < word.location + con.len + 1):
+            if i < len(title):
+                if title[i] == word.text:
+                    temp += ' / ' + title[i] + ' / '
+                else:
+                    temp += title[i] + ' '
+            i += 1
+
+        if i <= len(title) and title[i-1] in stopList:
+            temp += title[i] + ' '
+        
+        self.value.append(temp)
+
+# EXAMPLE
+
+input = "Keywords selected also specify the particular context of the document."
+print("Title:", input)
+
+context = Context(2)
+testTitle = Title(input.split())
+testIndex = Index()
+
+for i in range(len(testTitle.text)):
+    if title1.text[i] not in stopList:
+        testWord = Word(title1.text[i])
+        testWord.location = testTitle.text.index(testWord.text)
+        testIndex.add_index(context, testWord, testTitle.text) 
+print("KWIC:", testIndex.value)

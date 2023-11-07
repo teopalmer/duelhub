@@ -1,0 +1,55 @@
+def calculate(n):
+    solutions = []
+    board = [["█" for i in range(n)] for j in range(n)]
+    recursive_filter(board, 0, solutions)
+    return solutions
+
+
+def recursive_filter(board, row, solutions):
+    n = len(board)
+    if row == n:
+        solutions.append(["".join(row) for row in board])
+        return
+    for col in range(n):
+        if filter(board, row, col):
+            board[row][col] = "Q"
+            recursive_filter(board, row + 1, solutions)
+            board[row][col] = "█"
+
+
+def filter(board, row, col):
+    for i in range(col):
+        if board[row][i] == 'Q':
+            return False
+
+    i = row
+    j = col
+
+    while(i>=0 and j>=0): #checks for the upper left diagonall
+        if(board[i][j] == 'Q'):
+            return False
+        i -= 1
+        j -= 1
+    
+    i = row
+    j = col
+
+    while(i<grid_len and j>=0): #checks for lower left diagonal
+        if(board[i][j] == 'Q'):
+            return False
+        i += 1
+        j -= 1
+    
+ 
+    return True 
+
+
+# EXAMPLE
+n = 2
+
+solutions = calculate(n)
+for solution in solutions:
+    for row in solution:
+        print(row)
+    print()
+
